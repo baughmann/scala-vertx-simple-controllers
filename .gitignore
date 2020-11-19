@@ -1,0 +1,9 @@
+target
+.idea
+files
+project/target
+src/main/client/node_modules
+.DS_Store
+.bloop
+.metals
+.bsp

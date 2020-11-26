@@ -15,10 +15,11 @@ object Server {
   val router: Router = Router.router(vertx)
   router.route().handler(LoggerHandler.create(LoggerFormat.DEFAULT))
 
+  // TODO: You would probably wish to use an asymmetric key instead of something like this
   private val authConfig = new JWTAuthOptions()
     .addPubSecKey(new PubSecKeyOptions().setAlgorithm("HS256")
       // according to the VertX Gitter chat, these methods are marked as `deprecated` with no alternatives listed in the Javadocs
-      //  maybe a mixup due to the prepping for 4.0 release?
+      //  maybe a mix-up due to the prepping for 4.0 release?
       .setPublicKey("keyboard cat")
       .setSymmetric(true))
   val authProvider: JWTAuth = JWTAuth.create(vertx, authConfig)

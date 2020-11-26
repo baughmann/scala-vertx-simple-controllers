@@ -1,8 +1,6 @@
 package controllers
 
 import io.vertx.core.Vertx
-import models.Upload
-import utilities.JsonUtil
 
 // TODO: Since we cannot get other body data besides file uploads, we will need to send metadata in the headers since there is no body parser
 //  maybe look into creating a pre-request containing the document count, document metadata, and file size? that way we can better track upload completion

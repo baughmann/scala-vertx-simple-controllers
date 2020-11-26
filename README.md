@@ -37,3 +37,18 @@ Server.addController(myController)
       .addController(someOtherController)
       .start()
 ```
+
+### Body Handling
+
+We can also specify that we wish to handle parsing the body ourselves, as we can see in the `UploadController`:
+```
+post("/upload", parseBody = false) {
+    // ...
+}
+```
+You may wish to do this if you want to stream a file upload's contents directory to external storage somewhere and not store it directly on the local server.
+
+### Authentication
+
+I added a basic example of JWT bearer authentication, as seen in the `UsersController`. By adding `requireAuthentication = true` to a route,
+we can require that a valid JWT bearer token be present in any the HTTP headers for a given route.

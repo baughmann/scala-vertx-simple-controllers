@@ -15,4 +15,9 @@ libraryDependencies ++= Seq(
   "io.vertx" % "vertx-core" % VertxVersion,
   "io.vertx" % "vertx-web" % VertxVersion,
   "io.vertx" % "vertx-codegen" % VertxVersion,
+  "io.vertx" % "vertx-auth-jwt" % VertxVersion,
+
+  "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.11.1",
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.11.1",
+
 )

@@ -1,4 +1,7 @@
-import java.net.{Socket, SocketException}
+package utilities
+
+import java.net.Socket
+import java.net.SocketException
 
 object Utils {
 
@@ -9,6 +12,7 @@ object Utils {
       result = true
     } catch {
       case e: SocketException =>
+
       // Could not connect.
     }
     result

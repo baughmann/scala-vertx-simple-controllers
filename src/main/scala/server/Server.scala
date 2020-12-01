@@ -9,8 +9,10 @@ import io.vertx.ext.auth.jwt.{JWTAuth, JWTAuthOptions}
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.handler._
 import io.vertx.ext.web.sstore.LocalSessionStore
+import models.Configuration
 
 object Server {
+  val Config: Configuration = Configuration()
   val vertx: Vertx = Vertx.vertx()
   val router: Router = Router.router(vertx)
   router.route().handler(LoggerHandler.create(LoggerFormat.DEFAULT))
@@ -26,13 +28,13 @@ object Server {
   val authHandler: AuthHandler = JWTAuthHandler.create(authProvider)
 
 
-  def useCors(host: String, allowedHeaders: util.HashSet[String] = new util.HashSet()): Server.type = {
+  def useCors(allowedHeaders: util.HashSet[String] = new util.HashSet()): Server.type = {
     allowedHeaders.add("Content-Type")
     println("  * Configuring CORS")
 
     router.route()
       .handler(CorsHandler
-        .create(host)
+        .create(Config.host)
         .allowedHeaders(allowedHeaders))
 
     this
@@ -50,8 +52,8 @@ object Server {
     this
   }
 
-  def start(port: Int): Server.type = {
-    val verticle = new ServerVerticle(port, router, vertx)
+  def start(): Server.type = {
+    val verticle = new ServerVerticle(router, vertx)
     verticle.start()
 
     this

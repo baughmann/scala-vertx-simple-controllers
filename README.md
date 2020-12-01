@@ -73,6 +73,13 @@ I added a basic example of JWT bearer authentication, as seen in the
 we can require that a valid JWT bearer token be present in any the HTTP 
 headers for a given route.
 
+JWT signing is done using a simple symmetric key, and that key is set in the 
+configuration file at `config.server.authentication.secretKey`.
+
+Note that this isn't really practical because it offers no way to smoothly cycle 
+secret keys. The best way to handle the changing of the secret is to just sign your 
+users out on the front-end whenever they get a 401, which is itself not the best practice.
+
 ### Configuration
 The server looks for configuration files inside the `src/main/resources` directory.
 
